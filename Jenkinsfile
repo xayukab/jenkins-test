@@ -17,8 +17,9 @@ pipeline {
         
         stage('Copy Appsone Services'){
           steps {
-                        copyArtifacts filter: '**/*.tar.gz', fingerprintArtifacts: true, projectName: 'Appsone-2.0/com.appnomic.appsone$pipeline', selector: specific("${params.PIPELINE_BUILD_NUMBER}")
-                        copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, projectName: 'appsone-ui-service', selector: specific("${params.UI_BUILD_NUMBER}")
+                    
+                    copyArtifacts filter: '**/*.tar.gz', fingerprintArtifacts: true, projectName: 'Appsone-2.0/com.appnomic.appsone$pipeline', selector: specific("${params.PIPELINE_BUILD_NUMBER}")
+                    copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, projectName: 'appsone-ui-service', selector: specific("${params.UI_BUILD_NUMBER}")
                 }
          }
     }
