@@ -1,2 +1,2 @@
-PIPELINE_BUILD_NUMBER = 309 # test copy artifact
-UI_BUILD_NUMBER = 328 # test copy artifact
+env.PIPELINE_BUILD_NUMBER="309" # test copy artifact
+env.UI_BUILD_NUMBER="328" # test copy artifact
