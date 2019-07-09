@@ -17,6 +17,7 @@ pipeline {
               echo "${env.PIPELINE_BUILD_NUMBER}"
                     copyArtifacts filter: '**/*.tar.gz', fingerprintArtifacts: true, projectName: 'Appsone-2.0/com.appnomic.appsone$pipeline', selector: specific("${env.PIPELINE_BUILD_NUMBER}")
                     copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, projectName: 'appsone-ui-service', selector: specific("${env.UI_BUILD_NUMBER}")
+                    build(job:"grpc-docker",parameters:[string(name:"GRPC_BUILD_NUMBER",value:"${env.GRPC_BUILD_NUMBER}")])
                 }
          }
     }
