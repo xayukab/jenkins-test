@@ -51,7 +51,7 @@ pipeline {
                             fi
                         fi   
                     fi
-                done <A1_modulelist
+                done < modulelist
             }
         }
         
