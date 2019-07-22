@@ -22,7 +22,7 @@ pipeline {
                         if [ appname="PIPELINE_BUILD_NUMBER"] || [ appname="GRPC_BUILD_NUMBER" ] || [ appname="TRANSACTIONBROKER_BUILD_NUMBER" ] || [ appname="COMPONENT_AGENT_BUILD_NUMBER" ];then
                             curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/Appsone-2.0/build_number/ | grep -q "ERROR 404"
                             if [ $? -eq 0 ];then
-                                appsonebuildresult=0
+								appsonebuildresult=0
                             fi  
                         elif [ appname="UI_BUILD_NUMBER" ]
                             curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/appsone-ui-service/build_number | grep -q "ERROR 404"
@@ -47,26 +47,26 @@ pipeline {
                     fi
                 done < modulelist
         '''
-        if(appsonebuildresult=0){
+        if(appsonebuildresult=0)(
             emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
                                 Check console output at $BUILD_URL to view the results.''', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'abhishek.d@appnomic.com'
-        }
-        if (uibuildresult){
+        )
+        if (uibuildresult=0)(
             emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
                             Check console output at $BUILD_URL to view the results.''', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'abhishek.d@appnomic.com'
-        }
-        if(logforwarderbuildresult) {
+        )
+        if(logforwarderbuildresult=0) (
             emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
                                 Check console output at $BUILD_URL to view the results.''', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'abhishek.d@appnomic.com'
-        }
-            if(controlcenterbuildresult=0){
+        )
+            if(controlcenterbuildresult=0)(
             emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
                                 Check console output at $BUILD_URL to view the results.''', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'abhishek.d@appnomic.com'
-        }
-        if(jimbuildresult=0){
+        )
+        if(jimbuildresult=0)(
             emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
                                 Check console output at $BUILD_URL to view the results.''', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'abhishek.d@appnomic.com'
-        }
+        )
     }
            
     }
