@@ -16,6 +16,10 @@ pipeline {
 				sh '''
 						while read line
 						do
+							echo $line
+						done < modulelist
+						while read line
+						do
 							echo $line | grep -q BUILD_NUMBER
 							if [ $? -eq 0  ];then
 								build_number=`echo $line | awk -F"=" '{print $2}' `
