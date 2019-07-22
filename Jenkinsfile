@@ -19,27 +19,27 @@ pipeline {
 							build_number=`echo $line | awk -F"=" '{print $2}' `
 							appname=`echo $line | awk -F"=" '{print $1}' | awk -F"." '{print $2}'`
 							if [ appname="PIPELINE_BUILD_NUMBER"] || [ appname="GRPC_BUILD_NUMBER" ] || [ appname="TRANSACTIONBROKER_BUILD_NUMBER" ] || [ appname="COMPONENT_AGENT_BUILD_NUMBER" ];then
-								curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/Appsone-2.0/build_number/ | grep -q "ERROR 404"
+								curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/Appsone-2.0/${build_number}/ | grep -q "ERROR 404"
 								if [ $? -eq 0 ];then
 									appsonebuildresult=0
 								fi  
 							elif [ appname="UI_BUILD_NUMBER" ];then
-								curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/appsone-ui-service/build_number | grep -q "ERROR 404"
+								curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/appsone-ui-service/${build_number} | grep -q "ERROR 404"
 								if [ $? -eq 0 ];then
 									uibuildresult=0
 								fi
 							elif [ appname="LOGFORWARDER_BUILD_NUMBER" ];then
-								curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/log-forwarder/build_number | grep -q "ERROR 404"
+								curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/log-forwarder/${build_number} | grep -q "ERROR 404"
 								if [ $? -eq 0 ];then
 									logforwarderbuildresult=0
 								fi
 							elif [ appname="CONTROL_CENTER_BUILD_NUMBER" ];then
-								curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/appsone-controlcenter/65 | grep -q "ERROR 404"
+								curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/appsone-controlcenter/${build_number} | grep -q "ERROR 404"
 								if [ $? -eq 0 ];then
 									controlcenterbuildresult=0
 								fi
 							elif [ appname="JIM_BUILD_NUMBER" ];then
-								curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/Java-Intrusive-Agent/81 | grep -q "ERROR 404"
+								curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/Java-Intrusive-Agent/${build_number} | grep -q "ERROR 404"
 								if [ $? -eq 0 ];then
 									jimbuildresult=0
 								fi
