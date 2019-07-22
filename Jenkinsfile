@@ -25,7 +25,7 @@ pipeline {
 									if [ $? -eq 0 ];then
 										appsonebuildresult=0
 									fi  
-								elif [ appname="UI_BUILD_NUMBER" ]
+								elif [ appname="UI_BUILD_NUMBER" ];then
 									curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/appsone-ui-service/build_number | grep -q "ERROR 404"
 									if [ $? -eq 0 ];then
 						uibuildresult=0
