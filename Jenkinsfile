@@ -16,8 +16,8 @@ pipeline {
 				sh '''
 						cat modulelist | grep 'BUILD_NUMBER' | while read line
 						do
-							build_number=`echo $line | awk -F"=" '{print $2}' `
-							appname=`echo $line | awk -F"=" '{print $1}' | awk -F"." '{print $2}'`
+							build_number=`echo $line | awk -F"=" '{print $2}' | tr -d " "`
+							appname=`echo $line | awk -F"=" '{print $1}' | awk -F"." '{print $2}'|tr -d " "`
 							if [ appname="PIPELINE_BUILD_NUMBER"] || [ appname="GRPC_BUILD_NUMBER" ] || [ appname="TRANSACTIONBROKER_BUILD_NUMBER" ] || [ appname="COMPONENT_AGENT_BUILD_NUMBER" ];then
 								curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/Appsone-2.0/${build_number}/ | grep -q "ERROR 404"
 								if [ $? -eq 0 ];then
