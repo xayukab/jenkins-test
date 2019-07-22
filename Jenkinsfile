@@ -28,21 +28,22 @@ pipeline {
 								elif [ appname="UI_BUILD_NUMBER" ];then
 									curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/appsone-ui-service/build_number | grep -q "ERROR 404"
 									if [ $? -eq 0 ];then
-						uibuildresult=0
+										uibuildresult=0
 									fi
 								elif [ appname="LOGFORWARDER_BUILD_NUMBER" ];then
 									curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/log-forwarder/build_number | grep -q "ERROR 404"
 									if [ $? -eq 0 ];then
-						logforwarderbuildresult=0
+										logforwarderbuildresult=0
+									fi
 								elif [ appname="CONTROL_CENTER_BUILD_NUMBER" ];then
 									curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/appsone-controlcenter/65 | grep -q "ERROR 404"
 									if [ $? -eq 0 ];then
-						controlcenterbuildresult=0
+										controlcenterbuildresult=0
 									fi
 								elif [ appname="JIM_BUILD_NUMBER" ];then
 									curl -u appnomic-admin:appnomic@123 http://192.168.13.39:8080/job/Java-Intrusive-Agent/81 | grep -q "ERROR 404"
 									if [ $? -eq 0 ];then
-						jimbuildresult=0
+										jimbuildresult=0
 									fi
 								fi  
 							fi
